@@ -1,4 +1,4 @@
-# react-native-lazy-image
+# react-native-lazy-load-image
 
 A react native plugin to lazy load image with loading indicator and show default image if something goes wrong with image path and resolve image issues and much more 
 
@@ -7,21 +7,21 @@ A react native plugin to lazy load image with loading indicator and show default
 using either Yarn:
 
 ```
-yarn add react-native-infinite-looping-scroll
+yarn add react-native-lazy-load-image
 ```
 
 or npm:
 
 ```
-npm install react-native-infinite-looping-scroll
+npm install react-native-lazy-load-image
 ```
 
 ## Usage
 
 ```
-import { LazyImage } from 'react-native-lazy-image';
+import { LazyLoadImage } from 'react-native-lazy-load-image';
 
-<LazyImage source={{uri: 'https://via.placeholder.com/640x360'}} />
+<LazyLoadImage source={{uri: 'https://via.placeholder.com/640x360'}} />
 ```
 
 ## Features

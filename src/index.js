@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 const NoImage = require('./noimage.png');
 
-export const LazyImage = props => {
+export const LazyLoadImage = props => {
   const Image = props?.background ? ImageBackground : Img;
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
