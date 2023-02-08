@@ -11,7 +11,7 @@ const NoImage = require('./noimage.png');
 
 export const LazyLoadImage = props => {
   const Image = props?.background ? ImageBackground : Img;
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [curentImageSource, setCurentImageSource] = useState(
     props?.source || '',
@@ -24,19 +24,12 @@ export const LazyLoadImage = props => {
   const obj = {[refVar]: imagRef};
 
   const onError = e => {
-    setLoading(false);
     setIsError(true);
   };
   const onLoadSuccessfully = e => {
-    if (isError) {
-      return;
-    }
     setIsError(false);
   };
   const onLoadStart = e => {
-    if (isError) {
-      return;
-    }
     setIsError(false);
     setLoading(true);
   };
@@ -48,6 +41,7 @@ export const LazyLoadImage = props => {
     if (isError && isErrorCount < 2) {
       setIsErrorCount(prev => prev + 1);
       if (imagRef.current) {
+        try{
         const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
         imagRef.current?.setNativeProps({
           [nativeProp]: [
@@ -55,6 +49,9 @@ export const LazyLoadImage = props => {
           ],
         });
         setCurentImageSource(props?.default || NoImage);
+      }catch(e){
+          
+      }
       }
     }
   }, [isError]);
@@ -63,11 +60,15 @@ export const LazyLoadImage = props => {
     if (isErrorCount > 1) {
       // force show default image
       if (imagRef.current) {
-        const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-        imagRef.current?.setNativeProps({
-          [nativeProp]: [Img.resolveAssetSource(NoImage)],
-        });
-        setCurentImageSource(NoImage);
+        try{
+          const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
+          imagRef.current?.setNativeProps({
+            [nativeProp]: [Img.resolveAssetSource(NoImage)],
+          });
+          setCurentImageSource(NoImage);
+        }catch(e){
+
+        }
       }
     }
   }, [isErrorCount]);
@@ -88,18 +89,23 @@ export const LazyLoadImage = props => {
           }));
         },
         error => {
-          setLoading(false);
           setIsError(true);
         },
       );
     } else {
-      const imageDetail1 = Img.resolveAssetSource(curentImageSource);
-      if (imageDetail1 && imageDetail1.width) {
-        setImageDetail(prev => ({
-          ...prev,
-          width: imageDetail1.width,
-          height: imageDetail1.height,
-        }));
+      try{
+        const imageDetail1 = Img.resolveAssetSource(curentImageSource);
+        if (imageDetail1 && imageDetail1.width) {
+          setImageDetail(prev => ({
+            ...prev,
+            width: imageDetail1.width,
+            height: imageDetail1.height,
+          }));
+        }else{
+          setIsError(true);
+        }
+      }catch(e){
+        
       }
     }
   }, [curentImageSource]);
@@ -112,7 +118,8 @@ export const LazyLoadImage = props => {
 
   return (
     <>
-      <Image
+        <View>
+           <Image
         {...obj}
         {...props}
         style={[
@@ -137,7 +144,7 @@ export const LazyLoadImage = props => {
           ) : null
         }
       />
-      {loading && (props?.loading ?? true) && (
+       {loading && (props?.loading ?? true) && (
         <View
           style={[
             (props.autoWidthHightApplied ?? true) && imageDetail?.width
@@ -145,15 +152,17 @@ export const LazyLoadImage = props => {
               : {},
             props.style,
             props?.imageStyle ?? {},
-            styles.imageWrapper,
-          ]}>
+            styles.imageWrapper, 
+          ]}
+          >
           <ActivityIndicator
             animating={true}
             size="large"
             color={props?.color}
           />
         </View>
-      )}
+       )}
+        </View>
     </>
   );
 };
