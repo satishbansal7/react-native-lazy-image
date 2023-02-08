@@ -24,11 +24,13 @@ import { LazyLoadImage } from 'react-native-lazy-load-image';
 <LazyLoadImage source={{uri: 'https://via.placeholder.com/640x360'}} />
 ```
 
+![demo](https://user-images.githubusercontent.com/32444692/217605648-487e7f48-8203-48cb-a8c0-6c3f6c4a258b.gif)
+
 ## Features
 
 -   [x] Show loading before image being ready to load.
 -   [x] Show default image if there is any error in image path.
--   [x] Auto width/height applied if no width/heigh in given. 
+-   [x] Auto width/height applied if no width/height in given. 
 -   [x] Image all props supported.
 -   [x] ImageBackground supported.
 -   [x] Expo supported.
