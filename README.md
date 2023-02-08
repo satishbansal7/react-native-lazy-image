@@ -24,7 +24,11 @@ import { LazyLoadImage } from 'react-native-lazy-load-image';
 <LazyLoadImage source={{uri: 'https://via.placeholder.com/640x360'}} />
 ```
 
-![demo](https://user-images.githubusercontent.com/32444692/217605648-487e7f48-8203-48cb-a8c0-6c3f6c4a258b.gif)
+##Demo 
+
+<div style="text-align:center;">
+  <a href="https://user-images.githubusercontent.com/32444692/217605648-487e7f48-8203-48cb-a8c0-6c3f6c4a258b.gif"><img src="https://user-images.githubusercontent.com/32444692/217605648-487e7f48-8203-48cb-a8c0-6c3f6c4a258b.gif" alt="React Native Lazy Load Image demo" style="max-width:400px;"/></a>
+</div>
 
 ## Features
 
