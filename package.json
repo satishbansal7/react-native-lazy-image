@@ -1,6 +1,6 @@
 {
   "name": "react-native-lazy-load-image",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A react native plugin to lazy load image with loading indicator and show default image if something goes wrong with image path and resolve image issues and much more",
   "main": "src/index.js",
   "scripts": {

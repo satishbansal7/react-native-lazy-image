@@ -38,7 +38,7 @@ export const LazyLoadImage = props => {
   };
 
   useEffect(() => {
-    if (isError && isErrorCount < 2) {
+    if (isError && isErrorCount < 3) {
       setIsErrorCount(prev => prev + 1);
       if (imagRef.current) {
         try{
@@ -57,7 +57,7 @@ export const LazyLoadImage = props => {
   }, [isError]);
 
   useEffect(() => {
-    if (isErrorCount > 1) {
+    if (isErrorCount > 2) {
       // force show default image
       if (imagRef.current) {
         try{
@@ -75,6 +75,7 @@ export const LazyLoadImage = props => {
 
   useEffect(() => {
     setCurentImageSource(props?.source);
+    setIsErrorCount(0);
   }, [props?.source]);
 
   useEffect(() => {
